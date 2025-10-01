@@ -5,9 +5,21 @@
     <title>Meowdding</title>
 </head>
 <body>
-<h1>Meow</h1>
-<img id="cat" src="cats/cat.png" alt="Cat"/>
-<a href="https://github.com/meowdding/website">GitHub</a>
+    <nav id="header">
+        <div class="left_aligned">
+            <p>Meowdding</p>
+        </div>
+        <div class="right_aligned">
+            <a href="https://github.com/meowdding">GitHub</a>
+            <a href="https://modrinth.com/organization/meowdding">Modrinth</a>
+        </div>
+    </nav>
+
+    <img id="cat" src="cats/cat.png" alt="Cat"/>
+
+    <footer>
+        <a href="https://github.com/meowdding/website">Made with 🐈</a>
+    </footer>
 </body>
 <style>
     html, body {
@@ -17,27 +29,44 @@
     }
 
     body {
-        background-color: #f0f0f0;
+        background: #19091b;
+        color: #c0acc3;
         font-family: Arial, sans-serif;
         text-align: center;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4rem;
     }
 
-    h1 {
-        margin: 0;
-        padding: 0;
+    a {
+        color: #c0acc3;
+        text-decoration: underline;
+    }
+
+    #header {
+        background-color: #301934;
+        padding: 5px 5rem;
+        width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        border: 1px solid #301934;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
     }
 
     img {
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
         height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 </style>
 <script>
@@ -49,11 +78,11 @@
         "cat4.png",
         "cookie.png",
         "cookie1.png",
-        "not-cookie.png",
         "lucky.JPG",
         "moustache.jpg",
         "moustache2.jpg",
-        "moustache3.jpg"
+        "moustache3.jpg",
+        "not-cookie.png",
     ]
 
     function random() {
