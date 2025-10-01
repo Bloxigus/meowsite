@@ -1,96 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meowdding</title>
-</head>
-<body>
-    <nav id="header">
-        <div class="left_aligned">
-            <p>Meowdding</p>
+    <link rel="stylesheet" href="output.css" />
+    <script src="index.js"></script>
+  </head>
+
+  <body class="h-svh w-svw bg-black font-mono text-2xl text-white">
+    <div class="flex h-svh w-svw flex-col items-center justify-between bg-purple-700/15 pb-4">
+      <div class="flex w-full sm:flex-row flex-col items-center justify-between bg-purple-400/15 p-8 py-4">
+        <p>Meowdding</p>
+        <div>
+          <a class="underline duration-300 hover:text-pink-400" href="https://github.com/meowdding">GitHub</a>
+          <a class="underline duration-300 hover:text-pink-400" href="https://modrinth.com/organization/meowdding">
+            Modrinth
+          </a>
         </div>
-        <div class="right_aligned">
-            <a href="https://github.com/meowdding">GitHub</a>
-            <a href="https://modrinth.com/organization/meowdding">Modrinth</a>
-        </div>
-    </nav>
-
-    <img id="cat" src="cats/cat.png" alt="Cat"/>
-
-    <footer>
-        <a href="https://github.com/meowdding/website">Made with 🐈</a>
-    </footer>
-</body>
-<style>
-    html, body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    body {
-        background: #19091b;
-        color: #c0acc3;
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
-
-    a {
-        color: #c0acc3;
-        text-decoration: underline;
-    }
-
-    #header {
-        background-color: #301934;
-        padding: 5px 5rem;
-        width: 100vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-        border: 1px solid #301934;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    footer {
-        position: absolute;
-        bottom: 10px;
-        width: 100%;
-    }
-
-    img {
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        height: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
-<script>
-    const cats = [
-        "cookie.png",
-        "cookie1.png",
-        "lucky.JPG",
-        "moustache.jpg",
-        "moustache2.jpg",
-        "moustache3.jpg",
-        "not-cookie.jpg",
-        "philou.png",
-        "philou1.png",
-        "philou2.png",
-        "philou3.png",
-        "philou4.png",
-    ]
-
-    function random() {
-        const cat = document.getElementById("cat");
-        const randomIndex = Math.floor(Math.random() * cats.length);
-        cat.src = `cats/${cats[randomIndex]}`;
-    }
-
-    random();
-</script>
+      </div>
+      <img id="cat-image" class="w-3/4 rounded-3xl sm:w-1/4" src="cats/cat.png" alt="Cat Image" />
+      <a class="text-sm underline duration-300 hover:text-pink-400" href="https://github.com/meowdding/website">Made with 🐈</a>
+    </div>
+  </body>
 </html>
