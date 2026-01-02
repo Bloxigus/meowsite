@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meowdding</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <p>Meowdding</p>
+  </div>
+  <div class="content">
+
+    <div class="center">
+      <div id="input">
+        <label class="button-design" for="fileInput" id="fileInputLabel">Choose File</label>
+        <input hidden accept="image/*" id="fileInput" name="file" type="file">
+        <button class="button-design secondary-button" hidden id="createZip">Create Texturepack</button>
+      </div>
+
+      <div id="mod-selection">
+        <p id="custom-scoreboard-button" class="mod-button selected">Custom Scoreboard</label>
+        <p id="skyhanni-button" class="mod-button">SkyHanni</label>
+      </div>
+
+      <section id="instructions" class="">
+        <h2>How to use:</h2>
+        <ol>
+          <li>Click the "Choose File" button and select a .png image.</li>
+          <li>Click the "Create Texturepack" button.</li>
+          <li>Download the generated .zip file.</li>
+          <li>Place the .zip file in the "resourcepacks" folder of your Minecraft directory.</li>
+          <li>Enable the resource pack in the game.</li>
+          <li>Enable the option to use the background in the SkyHanni config (CustomScoreboard config if Modern).</li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="footer">
+      <a href="https://github.com/meowdding/website" class="secondary">
+        Made with 🐈
+      </a>
+      <p id="toggle" class="secondary">
+        Toggle Dark Mode
+      </p>
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="scoreboard.js"></script>
+</body>
+
+</html>
