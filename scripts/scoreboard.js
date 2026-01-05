@@ -16,7 +16,7 @@ const toggle = (button) => {
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
 
-        if (element.id == id) {
+        if (element.id === id) {
             element.classList.add("selected")
         } else {
             element.classList.remove("selected")

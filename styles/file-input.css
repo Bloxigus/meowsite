@@ -1,0 +1,32 @@
+.file-input-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    height: 2rem;
+    min-width: max(35%, 170px);
+    margin: 0;
+    outline: none;
+    border: none;
+
+    background-color: #EF5552;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.file-input:hover {
+    cursor: pointer;
+    background-color: #F56A67;
+}
+
+.file-input > input[type="file"] {
+    display: none;
+}
