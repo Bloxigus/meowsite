@@ -83,7 +83,7 @@ createPackButton.addEventListener("click", () => {
 });
 
 const minFormat = 1;
-const maxFormat = 1;
+const maxFormat = 1000;
 
 const generateZip = async (scoreboardImage) => {
     const meow = await fetch(`public/logos/${selectedMod}.png`)
