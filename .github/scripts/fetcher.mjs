@@ -83,8 +83,8 @@ async function fetchVersionChunk(versionChunk, catharsisVersions) {
 
       data.forEach((version) => {
         version.dependencies.forEach((element) => {
-          console.log(version.project_id)
           if (element.project_id === 'fc4wBpRx' || element.version_id in catharsisVersions) {
+            console.log(version.project_id)
             versions.push(version.project_id);
           }
         });
@@ -102,6 +102,7 @@ async function fetchVersions(versionIds, catharsisVersions) {
     await timeout(1000);
     console.log("Fetching chunk " + (parseInt(versionChunk) + 1) + " / " + versions.length);
     let list = await fetchVersionChunk(versions[versionChunk], catharsisVersions);
+    console.log(list);
     requires.push(...list)
   }
 
