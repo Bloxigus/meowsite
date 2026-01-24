@@ -30,7 +30,7 @@ function fetchAll(start, max) {
     }).then(async (data) => {
       if (data.offset + 100 >= max) return;
 
-      await timeout(500);
+      await timeout(1000);
       return fetchAll(data.offset + 100, data.total_hits);
     });
 }
