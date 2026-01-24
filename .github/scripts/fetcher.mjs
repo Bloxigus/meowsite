@@ -102,8 +102,8 @@ async function fetchVersions(versionIds, catharsisVersions) {
     await timeout(1000);
     console.log("Fetching chunk " + (parseInt(versionChunk) + 1) + " / " + versions.length);
     let list = await fetchVersionChunk(versions[versionChunk], catharsisVersions);
-    console.log(list);
     requires.push(...list)
+    console.log(requires);
   }
 
   return requires
@@ -122,7 +122,8 @@ async function run() {
   let projectData = {};
 
   for (let project in requireCatharsis) {
-    projectData[project] = projects[project];
+    let id = requireCatharsis[project];
+    projectData[id] = projects[id];
   }
 
   fs.writeFileSync('./public/resourcepacks.json', JSON.stringify(projectData, null, 2));
