@@ -6,6 +6,8 @@ jobs:
   pnpm:
     name: Run fetcher
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
@@ -17,7 +19,7 @@ jobs:
 
       - name: Run Script
         run: |
-          node .github/scripts/fetcher.js
+          node .github/scripts/fetcher.mjs
 
       - name: Commit and push changes
         run: |
