@@ -17,7 +17,7 @@ function fetchAll(start, max) {
         throw e;
       }
     }).then((data) => {
-      data.hits.forEach(project => {
+      data.hits.forEach((project) => {
         projects[project.project_id] = {
           slug: project.slug,
           title: project.title,
@@ -83,6 +83,7 @@ async function fetchVersionChunk(versionChunk, catharsisVersions) {
 
       data.forEach((version) => {
         version.dependencies.forEach((element) => {
+          console.log(version.project_id)
           if (element.project_id === 'fc4wBpRx' || element.version_id in catharsisVersions) {
             versions.push(version.project_id);
           }
@@ -95,12 +96,16 @@ async function fetchVersionChunk(versionChunk, catharsisVersions) {
 
 async function fetchVersions(versionIds, catharsisVersions) {
   let versions = chunk(versionIds, 200);
+  let requires = [];
 
   for (let versionChunk in versions) {
     await timeout(1000);
     console.log("Fetching chunk " + (parseInt(versionChunk) + 1) + " / " + versions.length);
-    await fetchVersionChunk(versions[versionChunk], catharsisVersions);
+    let list = await fetchVersionChunk(versions[versionChunk], catharsisVersions);
+    requires.push(...list)
   }
+
+  return requires
 }
 
 async function run() {
