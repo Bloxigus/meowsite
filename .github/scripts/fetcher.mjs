@@ -28,7 +28,7 @@ function fetchAll(start, max) {
       });
       return data;
     }).then(async (data) => {
-      if (data.offset + 100 >= max) return;
+      if (data.offset + 100 >= 200) return;
 
       await timeout(1000);
       return fetchAll(data.offset + 100, data.total_hits);
@@ -56,8 +56,16 @@ async function fetchCatharsisVersions() {
     .then((data => data.versions));
 }
 
-async function fetchVersions(versionIds, catharsisVersions) {
-  return fetch('https://api.modrinth.com/v2/versions?include_changelog=false&ids=' + JSON.stringify(versionIds), {
+function chunk(input, size) {
+  const chunks = [];
+  for (let i = 0; i < input.length; i += size) {
+    chunks.push(input.slice(i, i + size));
+  }
+  return chunks;
+}
+
+async function fetchVersionChunk(versionChunk, catharsisVersions) {
+  return fetch('https://api.modrinth.com/v2/versions?include_changelog=false&ids=' + JSON.stringify(versionChunk), {
     headers: {
       'User-Agent': 'meowdding/website (' + atob('Y29udGFjdEB0aGF0Z3Jhdnlib2F0LnRlY2g=') + ')'
     }
@@ -74,7 +82,6 @@ async function fetchVersions(versionIds, catharsisVersions) {
       let versions = [];
 
       data.forEach((version) => {
-        console.log(version);
         version.dependencies.forEach((element) => {
           if (element.project_id === 'fc4wBpRx' || element.version_id in catharsisVersions) {
             versions.push(version.project_id);
@@ -84,6 +91,16 @@ async function fetchVersions(versionIds, catharsisVersions) {
 
       return versions;
     });
+}
+
+async function fetchVersions(versionIds, catharsisVersions) {
+  let versions = chunk(versionIds, 200);
+
+  for (let versionChunk in versions) {
+    await timeout(1000);
+    console.log("Fetching chunk " + (parseInt(versionChunk) + 1) + " / " + versions.length);
+    await fetchVersionChunk(versions[versionChunk], catharsisVersions);
+  }
 }
 
 async function run() {
