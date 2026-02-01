@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Meowdding</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="./scripts/meow.js"></script>
+</head>
+
+<body>
+<div class="header">
+  <a href="./..">Meowdding</a>
+</div>
+<div class="content">
+  <h1 class="heading">1.8 Death Day</h1>
+  <div id="container" class="container">
+    <p id="description"></p>
+  </div>
+  <div class="footer">
+    <a href="https://github.com/meowdding/website" class="secondary">
+      Made with 🐈
+    </a>
+    <p id="toggle" class="secondary">
+      Toggle Dark Mode
+    </p>
+  </div>
+</div>
+</body>
+<script>
+  const el = document.getElementById("description");
+  const deathDate = new Date("2026-02-24T17:00:00Z");
+
+  function updateText() {
+    const now = new Date();
+    const diff = deathDate - now;
+
+    if (diff <= 0) {
+      el.textContent = `1.8 has been dead for ${getTime(-diff)}. finally`;
+    } else {
+      el.textContent = `1.8 will die in ${getTime(diff)}.`;
+    }
+  }
+
+  function getTime(diff) {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+  }
+
+  setInterval(updateText, 1000);
+  updateText();
+
+</script>
+</html>
