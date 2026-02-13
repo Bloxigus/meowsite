@@ -22,7 +22,7 @@ export async function processFile({ file }) {
     outputFileName = name.replace(catsZipPattern, '.zip')
     packType = 'Catharsis Resource Pack';
     convertedType = 'Vanilla Resource Pack';
-  } if (catsPattern.test(name)) {
+  } else if (catsPattern.test(name)) {
     output = await handleCatsFile(content);
     outputFileName = name.replace(catsPattern, '.zip');
     packType = 'Catharsis Resource Pack';
