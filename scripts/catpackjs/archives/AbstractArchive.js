@@ -17,6 +17,10 @@ export class Archive {
     ];
   }
 
+  hasFile(fileName) {
+    return this.files.has(fileName)
+  }
+
   addFile(file) {
     this.files.set(file.name, file);
   }
