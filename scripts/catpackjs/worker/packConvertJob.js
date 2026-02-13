@@ -18,7 +18,7 @@ export async function processFile({ file }) {
   let convertedType;
 
   if (catsZipPattern.test(name)) {
-    output = await handleCatsFile(content)
+    output = await handleCatsZipFile(content)
     outputFileName = name.replace(catsZipPattern, '.zip')
     packType = 'Catharsis Resource Pack';
     convertedType = 'Vanilla Resource Pack';
