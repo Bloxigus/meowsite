@@ -4,6 +4,7 @@ import { ReadableBuffer } from '../utils/ReadableBuffer.js';
 import { PleadError } from '../utils/Utils.js';
 
 
+const catsZipPattern = /\.cats\.zip$/;
 const zipPattern = /\.zip$/;
 const catsPattern = /\.cats$/;
 
@@ -16,7 +17,12 @@ export async function processFile({ file }) {
   let packType;
   let convertedType;
 
-  if (catsPattern.test(name)) {
+  if (catsZipPattern.test(name)) {
+    output = await handleCatsFile(content)
+    outputFileName = name.replace(catsZipPattern, '.zip')
+    packType = 'Catharsis Resource Pack';
+    convertedType = 'Vanilla Resource Pack';
+  } if (catsPattern.test(name)) {
     output = await handleCatsFile(content);
     outputFileName = name.replace(catsPattern, '.zip');
     packType = 'Catharsis Resource Pack';
@@ -36,6 +42,22 @@ export async function processFile({ file }) {
     packType,
     convertedType
   };
+}
+
+async function handleCatsZipFile(content) {
+  const outerArchive = await ZipArchive.parse(content);
+
+  if (!outerArchive.hasFile("pack.cats")) return content;
+
+  const innerContent = outerArchive.getFile("pack.cats")
+
+  const innerArchive = await CatArchive.parse(innerContent)
+
+  const converted = new ZipArchive();
+
+  innerArchive.transferTo(converted);
+
+  return await converted.compress();
 }
 
 async function handleCatsFile(content) {
